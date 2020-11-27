@@ -20,19 +20,23 @@ public class LoginGeneratorTest {
 	@Test
 	public void generateLoginForNomAndPrenom() {
 		// CT1
-		loginGenerator.generateLoginForNomAndPrenom("Durand", "Paul");
+		assertEquals("PDUR", loginGenerator.generateLoginForNomAndPrenom("Durand", "Paul"));
 		assertTrue(loginService.loginExists("PDUR"));
 
 		// CT2
-		loginGenerator.generateLoginForNomAndPrenom("Ralling", "John");
+		assertEquals("JRAL2", loginGenerator.generateLoginForNomAndPrenom("Ralling", "John"));
 		assertTrue(loginService.loginExists("JRAL2"));
 
 		// CT3
-		loginGenerator.generateLoginForNomAndPrenom("Rolling", "Jean");
+		assertEquals("JROL1", loginGenerator.generateLoginForNomAndPrenom("Rolling", "Jean"));
 		assertTrue(loginService.loginExists("JROL1"));
 
 		// CT4
-		loginGenerator.generateLoginForNomAndPrenom("Dùrand", "Paul");
+		assertEquals("PDUR1", loginGenerator.generateLoginForNomAndPrenom("Dùrand", "Paul"));
 		assertTrue(loginService.loginExists("PDUR1"));
+
+		// CT5
+		assertEquals("PDU", loginGenerator.generateLoginForNomAndPrenom("Du", "Paul"));
+		assertTrue(loginService.loginExists("PDU"));
 	}
 }
